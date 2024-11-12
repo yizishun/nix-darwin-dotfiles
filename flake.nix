@@ -1,67 +1,68 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "Nix for macOS configuration";
+
+  nixConfig = {
+    substituters = [
+      # Query the mirror of USTC first, and then the official cache.
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://cache.nixos.org"
+    ];
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
-  let
-    configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
-        ];
-
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      services.yabai.enable = true;
-      services.skhd.enable = true;
-      # nix.package = pkgs.nix;
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-      nix.extraOptions = ''
-        extra-platforms = x86_64-darwin aarch64-darwin
-      '';
-      nix.linux-builder.enable = true;
-
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 5;
-      system.defaults = {
-        dock.autohide = false;
-        dock.mru-spaces = false;
-        finder.AppleShowAllExtensions = true;
-        finder.FXPreferredViewStyle = "clmv";
-        loginwindow.LoginwindowText = "nixcademy.com";
-        screencapture.location = "~/Pictures/screenshots";
-        screensaver.askForPasswordDelay = 10;
+  outputs = inputs @ {
+    self,
+    nix-darwin,
+    nixpkgs,
+    home-manager,
+  }: let
+    username = "yizishun";
+    useremail = "320016@qq.com";
+    system = "aarch64-darwin";
+    hostname = "MacBook-Air-7";
+    specialArgs =
+      inputs
+      // {
+        inherit username useremail hostname system;
       };
-
-      security.pam.enableSudoTouchIdAuth = true;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-    };
-  in
-  {
+  in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."MacBook-Air-7" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+    darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
+      inherit system specialArgs;
+      modules = [
+        ./module/app.nix
+        ./module/host-users.nix
+        ./module/nix-core.nix
+        ./module/system.nix
+        ./module/config/yabai.nix
+        ./module/config/skhd.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.verbose = true;
+          home-manager.extraSpecialArgs = specialArgs;
+          home-manager.users.${username} = import ./home;
+        }
+      ];
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."MacBook-Air-7".pkgs;
+    darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
+
+    # nix code formatter
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }
