@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export CONFIG_DIR="/Users/yizishun/nix-darwin-config/module/config/sketchybar"
 window_state() {
   source "$CONFIG_DIR/colors.sh"
   source "$CONFIG_DIR/icons.sh"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CONFIG_DIR="/Users/yizishun/nix-darwin-config/module/config/sketchybar"
 update() {
   source "$CONFIG_DIR/colors.sh"
   source "$CONFIG_DIR/icons.sh"
