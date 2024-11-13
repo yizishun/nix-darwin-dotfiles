@@ -7,6 +7,7 @@
     just
     yabai
     skhd
+    sketchybar
   ];
   homebrew = {
     enable = true;
@@ -21,7 +22,11 @@
     brews = [
       "cowsay"
       "mas"
+      "jq"
+      "switchaudio-osx"
     ];
-    casks = [];
+    casks = [
+      "sf-symbols"
+    ];
   };
 }

@@ -23,7 +23,6 @@
         ShowPathbar = true; # show path bar
         ShowStatusBar = true; # show status bar
       };
-      # customize trackpad
       trackpad = {
         # tap - 轻触触摸板, click - 点击触摸板
         Clicking = true; # enable tap to click(轻触触摸板相当于点击)

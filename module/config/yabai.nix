@@ -15,9 +15,9 @@
       active_window_opacity = "0.95";
       normal_window_opacity = "0.85";
       window_border = "on";
-      window_border_width = 4;
-      active_window_border_color = "0xff8CABC8";
-      normal_window_border_color = "0xff2a2f38";
+      window_border_width = 5;
+      active_window_border_color = "0xffe1e3e4";
+      normal_window_border_color = "0xff87ceeb";
       insert_feedback_color = "0xff9dd274";
       split_ratio = "0.50";
       auto_balance = "off";

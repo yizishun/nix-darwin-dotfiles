@@ -48,6 +48,7 @@
         ./module/system.nix
         ./module/config/yabai.nix
         ./module/config/skhd.nix
+        ./module/config/sketchybar/sketchybar.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
