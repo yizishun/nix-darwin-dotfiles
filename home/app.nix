@@ -19,5 +19,10 @@
     (writeShellScriptBin "my-hello" ''
       echo "Hello, ${config.home.username}!"
     '')
+    poetry
+    python311
+    rustup
+    nix-prefetch-git
+    nodejs_22
   ];
 }
