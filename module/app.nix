@@ -8,6 +8,7 @@
     yabai
     skhd
     sketchybar
+    verilator
   ];
   homebrew = {
     enable = true;

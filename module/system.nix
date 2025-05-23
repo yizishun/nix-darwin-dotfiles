@@ -105,7 +105,7 @@
         "com.apple.ImageCapture".disableHotPlug = true;
       };
       loginwindow = {
-        LoginwindowText = "I don't write code; I solve problems.";
+        LoginwindowText = "KEEP THINGKING!!!!!X";
         SHOWFULLNAME = true;
       };
       screencapture = {

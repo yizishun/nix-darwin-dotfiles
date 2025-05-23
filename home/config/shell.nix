@@ -33,6 +33,7 @@
     RISCV = "/opt/homebrew/Cellar/riscv-gnu-toolchain/main";
     CONFIG_DIR = "/Users/yizishun/nix-darwin-config/module/config/sketchybar";
     CLICOLOR = "1";
+    NIXPKGS_ALLOW_INSECURE=1;
   };
   home.sessionPath = [
     "/opt/homebrew/opt/coreutils/libexec/gnubin"
@@ -54,5 +55,7 @@
     ssh121 = "ssh awaken@121.41.164.19";
     key = "cat ~/k";
     gcc = "gcc-14";
+    todo = "code ~/todo/TODO.md";
+    vcs = "docker run -it -p 5902:5902 -p 1234:22 --hostname lizhen --mac-address 02:42:ac:11:00:02 -e VERDI_HOME=/usr/synopsys/verdi-L-2016.06-1 -v /Users/yizishun/chisel-playground:/mnt/chisel-playground phyzli/ubuntu18.04_xfce4_vnc4server_synopsys2016";
   };
 }

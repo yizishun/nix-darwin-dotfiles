@@ -19,10 +19,28 @@
     (writeShellScriptBin "my-hello" ''
       echo "Hello, ${config.home.username}!"
     '')
+    #language
     poetry
     python311
     rustup
-    nix-prefetch-git
-    nodejs_22
+    nodejs_23
+    mysql84
+
+    texliveTeTeX
+    #build tools
+    # 定制化的 mill
+#    (let
+#      jre = pkgs.jdk21; # 使用 Java 21
+#    in (pkgs.mill.override { inherit jre; }).overrideAttrs (old: {
+#      passthru = {
+#        inherit jre;
+#      };
+#    }))
+    #gnumake
+    cmake
+    #compiler
+    circt
+    verilog
+    surfer
   ];
 }
