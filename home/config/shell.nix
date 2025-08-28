@@ -32,6 +32,7 @@
     BRANCHSIM_HOME = "/Users/yizishun/ysyx-workbench/npc-chisel/branchSim";
     RISCV = "/opt/homebrew/Cellar/riscv-gnu-toolchain/main";
     CONFIG_DIR = "/Users/yizishun/nix-darwin-config/module/config/sketchybar";
+    CHIPLAB_HOME = "/Users/yizishun/untitl3d/untitl3d";
     CLICOLOR = "1";
     NIXPKGS_ALLOW_INSECURE=1;
   };
@@ -49,13 +50,20 @@
     "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
     "/usr/bin"
     "$HOME/.local/bin"
+    "/Users/yizishun/oss-cad-suite/bin"
+    "/Users/yizishun/Library/Python/3.9/bin"
+    "/Users/yizishun/untitl3d/untitl3d/toolchains/loongson-gnu-toolchain-8.3-x86_64-loongarch32r-linux-gnusf-v2.0/bin"
+    "/opt/homebrew/opt/ncurses/bin"
+    "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/"
 ];
 
   home.shellAliases = {
     ssh121 = "ssh awaken@121.41.164.19";
     key = "cat ~/k";
-    gcc = "gcc-14";
-    todo = "code ~/todo/TODO.md";
-    vcs = "docker run -it -p 5902:5902 -p 1234:22 --hostname lizhen --mac-address 02:42:ac:11:00:02 -e VERDI_HOME=/usr/synopsys/verdi-L-2016.06-1 -v /Users/yizishun/chisel-playground:/mnt/chisel-playground phyzli/ubuntu18.04_xfce4_vnc4server_synopsys2016";
+    #gcc = "gcc-14";
+    todo = "cursor ~/todo/TODO.md";
+    vcs = "docker run -it -p 5902:5902 -p 1234:22 --hostname lizhen --mac-address 02:42:ac:11:00:02 -e VERDI_HOME=/usr/synopsys/verdi-L-2016.06-1 -v /Users/yizishun/zen-core:/mnt/zen-core phyzli/ubuntu18.04_xfce4_vnc4server_synopsys2016";
+    qemu-ubuntu = "qemu-system-x86_64 -cpu Skylake-Client,+avx,+avx2 -m 4G -hda /Users/yizishun/qemu-ubuntu22.04/ubuntu-disk.qcow2 -virtfs local,path=/Users/yizishun/zen-core,mount_tag=shared-folder,security_model=none,id=shared -net nic -net user,hostfwd=tcp::2222-:22 &";
+    sshqemu = "ssh -p 2222 yizishun@localhost";
   };
 }

@@ -23,8 +23,10 @@
     poetry
     python311
     rustup
-    nodejs_23
-    mysql84
+    nodejs_24
+    nodemon
+    pnpm
+    yarn
 
     texliveTeTeX
     #build tools
@@ -39,8 +41,27 @@
     #gnumake
     cmake
     #compiler
-    circt
     verilog
     surfer
+    jq
+    espresso
+    # open-verify
+    swig
+    openvpn
+    wireguard-tools
+    pandoc
+    libsForQt5.qt5.qtbase
+    circt
+    minicom
+    typst
+    # network
+    nmap
+    mitmproxy
+    aircrack-ng
+    automake
+    autoconf
+    libtool
+    gnum4
+    pkg-config
   ];
 }
