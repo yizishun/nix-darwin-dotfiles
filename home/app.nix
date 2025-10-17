@@ -63,5 +63,6 @@
     libtool
     gnum4
     pkg-config
+    maven
   ];
 }
